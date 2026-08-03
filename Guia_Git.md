@@ -1,4 +1,4 @@
-# Ensayo sobre Git Bash y su Glosario Completo 
+# Ensayo sobre Git Bash y su Glosario Completo 1
 
 > Un mapa visual para entender Git, trabajar con confianza y dominar los comandos más importantes de Git Bash.
 
