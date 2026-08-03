@@ -1,11 +1,12 @@
-# Ensayo sobre Git Bash y su Glosario Completo 2
+# Guía práctica de Git Bash
 
-> Un mapa visual para entender Git, trabajar con confianza y dominar los comandos más importantes de Git Bash.
+> Un mapa visual para entender Git, trabajar con confianza y dominar los comandos más importantes de forma práctica.
 
 ## Tabla de contenido
 
 - [Introducción](#introducción)
-- [Por qué Git Bash importa](#por-qué-git-bash-importa)
+- [Inicio rápido](#inicio-rápido)
+- [Conceptos básicos](#conceptos-básicos)
 - [Configuración básica de un repositorio para una persona](#configuración-básica-de-un-repositorio-para-una-persona)
 - [Configuración básica de un repositorio para un equipo de desarrollo](#configuración-básica-de-un-repositorio-para-un-equipo-de-desarrollo)
 - [Flujos clásicos de trabajo](#flujos-clásicos-de-trabajo)
@@ -19,31 +20,74 @@
   - [Ramas y fusiones](#ramas-y-fusiones)
   - [Remotos y sincronización](#remotos-y-sincronización)
   - [Herramientas avanzadas](#herramientas-avanzadas)
+- [Errores comunes](#errores-comunes)
+- [Ejemplos prácticos de conflictos de Git](#ejemplos-prácticos-de-conflictos-de-git)
 - [Consejos finales](#consejos-finales)
 
 ---
 
 ## Introducción
 
-> Descripción: esta sección presenta Git como una herramienta esencial para guardar, organizar y compartir cambios de forma ordenada.
+> Descripción: presenta Git como una herramienta esencial para guardar, organizar y compartir cambios con orden y seguridad.
 
-Git es mucho más que un sistema de control de versiones: es una forma de pensar en el trabajo colaborativo, la trazabilidad y la evolución de un proyecto. En el desarrollo moderno, Git permite registrar cada cambio, volver a versiones anteriores, trabajar en paralelo con otras personas y garantizar que el proyecto avance con orden y seguridad. Git Bash, por su parte, ofrece una terminal potente que convierte estas capacidades en acciones precisas mediante comandos claros.
+Git es mucho más que un sistema de control de versiones: es una forma de pensar en el trabajo colaborativo, la trazabilidad y la evolución de un proyecto. Permite registrar cada cambio, volver a estados anteriores, trabajar en paralelo con otras personas y mantener un historial claro del progreso. Git Bash convierte esa lógica en comandos precisos y repetibles.
 
-Este ensayo combina una guía práctica con un glosario útil para aprender, recordar y aplicar los comandos esenciales de Git Bash con mayor confianza.
+Esta guía combina una introducción práctica, ejemplos de flujo de trabajo y un glosario útil para aprender y recordar los comandos más importantes.
 
 ---
 
-## Por qué Git Bash importa
+## Inicio rápido
 
-> Descripción: explica por qué esta herramienta sigue siendo fundamental para desarrolladores, estudiantes y equipos.
+> Descripción: ofrece una vista inmediata de los comandos que más se utilizan al empezar a trabajar con Git.
 
-Git Bash combina la potencia de Git con la familiaridad de una terminal. Su importancia radica en tres grandes ventajas:
+Si solo recuerdas unos pocos comandos, empieza con este flujo básico:
 
-1. **Precisión**: cada acción se ejecuta de manera explícita.
-2. **Automatización**: permite crear flujos repetibles y eficientes.
-3. **Control**: ofrece visibilidad total del estado del repositorio.
+```bash
+git status
+git add .
+git commit -m "Descripción del cambio"
+git push
+```
 
-Desde iniciar un proyecto hasta publicar cambios en GitHub, Git Bash permite gestionar cada paso con rigor. Aprender sus comandos no solo mejora la productividad, también fortalece la comprensión del trabajo profesional con código y archivos versionados.
+### Mini guía de uso diario
+
+- `git status`: revisa qué ha cambiado.
+- `git add .`: prepara los cambios para guardar.
+- `git commit -m "..."`: crea un punto de control con un mensaje claro.
+- `git push`: sube los cambios al repositorio remoto.
+
+### Inicio rápido para un nuevo repositorio
+
+```bash
+git init
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"
+git status
+git add .
+git commit -m "Primer commit"
+```
+
+---
+
+## Conceptos básicos
+
+> Descripción: explica los pilares de Git para que los comandos tengan sentido.
+
+Antes de memorizar comandos, conviene entender algunos conceptos clave:
+
+- **Working directory**: es la carpeta donde trabajas y editas archivos.
+- **Área de preparación o staging**: es el lugar donde eliges qué cambios quieres guardar.
+- **Commit**: es un punto de control del historial.
+- **Rama**: es una línea de desarrollo independiente.
+- **Repositorio remoto**: es la copia del proyecto alojada en GitHub u otro servidor.
+
+Una forma sencilla de imaginarlo es esta:
+
+```text
+Archivos en tu carpeta -> git add -> commit -> rama -> push -> GitHub
+```
+
+Comprender esto facilita mucho el uso de los comandos posteriores.
 
 ---
 
@@ -177,7 +221,7 @@ main -> cambios pequeños -> integración continua
 
 ## Flujos prácticos adicionales
 
-> Descripción: esta sección recoge escenarios muy comunes en Git para corregir errores, revisar cambios y trabajar con estructuras más complejas.
+> Descripción: recoge escenarios muy comunes en Git para corregir errores, revisar cambios y trabajar con estructuras más complejas.
 
 ### 1. Cambio de comentarios de un commit
 
@@ -324,7 +368,7 @@ La práctica constante de este flujo convierte a Git en una herramienta natural 
 
 ## Glosario completo de comandos de Git Bash
 
-> Descripción: esta sección reúne los comandos más importantes, organizados por función para facilitar su consulta.
+> Descripción: reúne los comandos más importantes, organizados por función para facilitar su consulta.
 
 ### Configuración y entorno
 
@@ -436,6 +480,279 @@ La práctica constante de este flujo convierte a Git en una herramienta natural 
 | `git clean -fd` | Elimina archivos no rastreados y directorios vacíos. |
 | `git fsck` | Verifica la integridad de la base de datos de Git. |
 | `git gc` | Optimiza el repositorio limpiando objetos innecesarios. |
+
+---
+
+## Errores comunes
+
+> Descripción: ayuda a identificar problemas frecuentes y a resolverlos con rapidez.
+
+### 1. `fatal: not a git repository`
+
+Se produjo porque la carpeta actual no está inicializada como repositorio.
+
+```bash
+git init
+```
+
+### 2. `nothing to commit`
+
+Indica que no hay cambios nuevos para guardar.
+
+```bash
+git status
+```
+
+### 3. `origin already exists`
+
+Ya existe un remoto con ese nombre. Se puede cambiar o eliminar.
+
+```bash
+git remote -v
+git remote remove origin
+```
+
+### 4. `failed to push some refs`
+
+Suele pasar cuando la rama remota tiene cambios que tu copia local no tiene.
+
+```bash
+git pull --rebase
+git push
+```
+
+### 5. Conflicto al hacer merge o pull
+
+Se resuelve editando los archivos marcados por Git, dejando la versión correcta y luego:
+
+```bash
+git add .
+git commit -m "Resolver conflicto"
+```
+
+---
+
+## Ejemplos prácticos de conflictos de Git
+
+> Descripción: presenta ejemplos reales, ordenados del más fácil al más complejo, para generar conflictos y resolverlos con Git de forma práctica.
+
+### 1. Cambio simple en un archivo sin conflicto
+
+#### Generación
+
+```bash
+git checkout main
+echo "Primera línea" > archivo.txt
+git add archivo.txt
+git commit -m "Agregar archivo base"
+git push origin main
+```
+
+#### Resolución
+
+No hay conflicto. Solo basta con confirmar y sincronizar:
+
+```bash
+git status
+git push origin main
+```
+
+### 2. Cambio local y cambio remoto sobre el mismo archivo
+
+#### Generación
+
+```bash
+git checkout main
+echo "Cambio local" > archivo.txt
+git add archivo.txt
+git commit -m "Cambio local"
+```
+
+En otra copia o desde GitHub, realiza un cambio diferente en el mismo archivo y súbelo.
+
+#### Resolución
+
+```bash
+git pull origin main
+```
+
+Si aparece un conflicto, edita el archivo, deja el contenido deseado y luego:
+
+```bash
+git add archivo.txt
+git commit -m "Resolver conflicto de sincronización"
+git push origin main
+```
+
+### 3. Conflicto al hacer merge entre `main` y una rama
+
+#### Generación
+
+```bash
+git checkout main
+git checkout -b feature/ejemplo
+# Edita archivo.txt en esta rama
+git add archivo.txt
+git commit -m "Cambio en feature"
+git checkout main
+# Edita el mismo archivo.txt en main
+git add archivo.txt
+git commit -m "Cambio en main"
+git merge feature/ejemplo
+```
+
+#### Resolución
+
+Git mostrará el conflicto. Abre el archivo y elimina los marcadores:
+
+```text
+<<<<<<< HEAD
+=======
+>>>>>>> feature/ejemplo
+```
+
+Luego:
+
+```bash
+git add archivo.txt
+git commit -m "Resolver conflicto de merge"
+```
+
+### 4. Conflicto al hacer `pull`
+
+#### Generación
+
+```bash
+git checkout main
+# Haz un cambio local en archivo.txt
+git add archivo.txt
+git commit -m "Cambio local"
+# En GitHub o en otra copia, cambia el mismo archivo y súbelo
+```
+
+#### Resolución
+
+```bash
+git pull origin main
+```
+
+Si aparece conflicto, resuélvelo manualmente y luego:
+
+```bash
+git add archivo.txt
+git commit -m "Resolver conflicto al hacer pull"
+git push origin main
+```
+
+### 5. Conflicto en la misma línea de un archivo
+
+#### Generación
+
+```bash
+git checkout main
+echo "Versión uno" > archivo.txt
+git add archivo.txt
+git commit -m "Versión uno"
+git checkout -b feature/linea
+# Cambia la misma línea a otra versión
+git add archivo.txt
+git commit -m "Versión dos"
+git checkout main
+# Cambia la misma línea a una tercera versión
+git add archivo.txt
+git commit -m "Versión tres"
+git merge feature/linea
+```
+
+#### Resolución
+
+Edita el archivo conflictivo y deja la versión final deseada. Después:
+
+```bash
+git add archivo.txt
+git commit -m "Resolver conflicto de línea"
+```
+
+### 6. Conflicto con rebase
+
+#### Generación
+
+```bash
+git checkout feature/rebase
+git rebase main
+```
+
+Si ambas ramas modificaron el mismo archivo, Git mostrará un conflicto.
+
+#### Resolución
+
+```bash
+git status
+git add archivo.txt
+git rebase --continue
+```
+
+Si deseas cancelar el proceso:
+
+```bash
+git rebase --abort
+```
+
+### 7. Conflicto por archivo eliminado y modificado
+
+#### Generación
+
+```bash
+git checkout main
+rm archivo.txt
+git add -A
+git commit -m "Eliminar archivo"
+git checkout -b feature/archivo
+# Modifica archivo.txt en esta rama
+git add archivo.txt
+git commit -m "Modificar archivo"
+git checkout main
+git merge feature/archivo
+```
+
+#### Resolución
+
+Git marcará el conflicto. Decide si conservar el archivo o eliminarlo y luego:
+
+```bash
+git add -A
+git commit -m "Resolver conflicto por archivo eliminado"
+```
+
+### 8. Conflicto avanzado con submodulos o estructuras complejas
+
+#### Generación
+
+```bash
+git submodule add https://github.com/usuario/otro-repo.git
+```
+
+Luego modifica el submódulo en dos ramas distintas.
+
+#### Resolución
+
+```bash
+git status
+git submodule update --init --recursive
+```
+
+Y resuelve los cambios del submódulo manualmente o con el flujo normal de merge.
+
+### Recomendación de orden para practicar
+
+1. Cambio simple en un archivo sin conflicto
+2. Cambio local y cambio remoto sobre el mismo archivo
+3. Conflicto al hacer merge entre `main` y una rama
+4. Conflicto al hacer `pull`
+5. Conflicto en la misma línea de un archivo
+6. Conflicto con rebase
+7. Conflicto por archivo eliminado y modificado
+8. Conflicto avanzado con submodulos
 
 ---
 
