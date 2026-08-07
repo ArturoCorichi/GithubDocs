@@ -43,6 +43,7 @@ Esta guía combina una introducción práctica, ejemplos de flujo de trabajo y u
 Si solo recuerdas unos pocos comandos, empieza con este flujo básico:
 
 ```bash
+# Revisa el estado del repositorio, prepara los cambios, guarda un commit y los sube al remoto.
 git status
 git add .
 git commit -m "Descripción del cambio"
@@ -102,6 +103,7 @@ Una persona necesita crear un repositorio local y luego compartirlo en GitHub.
 ### Pasos recomendados
 
 ```bash
+# Inicializa un repositorio, configura tus datos y guarda el primer commit.
 git init
 git config --global user.name "Tu Nombre"
 git config --global user.email "tu@email.com"
@@ -113,6 +115,7 @@ git commit -m "Primer commit"
 ### Subir a GitHub
 
 ```bash
+# Renombra la rama principal, conecta el remoto y sube los cambios a GitHub.
 git branch -M main
 git remote add origin https://github.com/TU_USUARIO/TU_REPOSITORIO.git
 git push -u origin main
@@ -140,6 +143,7 @@ Un equipo necesita un repositorio compartido donde cada miembro trabaje en ramas
 ### Pasos recomendados
 
 ```bash
+# Clona el repositorio, crea una rama de trabajo y sube la nueva funcionalidad.
 git clone https://github.com/ORG/REPO.git
 cd REPO
 git checkout -b feature/nombre-tarea
@@ -228,6 +232,7 @@ main -> cambios pequeños -> integración continua
 Cuando un commit ya fue creado y se desea corregir el mensaje:
 
 ```bash
+# Corrige el mensaje del último commit sin crear uno nuevo.
 git commit --amend -m "Nuevo mensaje de commit"
 ```
 
@@ -238,6 +243,7 @@ Si el commit ya fue enviado a GitHub y otros colaboradores lo han visto, convien
 Si se necesita modificar el último commit para incluir o quitar archivos:
 
 ```bash
+# Agrega cambios al último commit y lo reemplaza por una versión actualizada.
 git add archivo_modificado.txt
 git commit --amend --no-edit
 ```
@@ -249,6 +255,7 @@ Esto reemplaza el commit anterior por uno nuevo con los cambios ajustados.
 Para ver lo que cambió entre versiones o archivos:
 
 ```bash
+# Muestra las diferencias entre cambios, cambios preparados y versiones anteriores.
 git diff
 git diff --staged
 git diff HEAD~1 HEAD
@@ -261,18 +268,21 @@ Estas órdenes ayudan a revisar cambios antes de confirmar o fusionar.
 Si se necesita volver a un commit anterior:
 
 ```bash
+# Cambia el estado del repositorio a un commit anterior.
 git checkout <commit>
 ```
 
 O de forma más segura en una rama actual:
 
 ```bash
+# Restaura un archivo a partir de una versión previa.
 git restore --source=<commit> -- <archivo>
 ```
 
 Para regresar al estado anterior de toda la rama:
 
 ```bash
+# Devuelve la rama completa a un commit específico.
 git reset --hard <commit>
 ```
 
@@ -281,6 +291,7 @@ git reset --hard <commit>
 Para trabajar en una rama y luego integrar cambios con `main`:
 
 ```bash
+# Actualiza la rama principal y fusiona sus cambios en una nueva rama de trabajo.
 git checkout main
 git pull
 git checkout -b feature/nueva-funcion
@@ -294,12 +305,14 @@ Este flujo evita que una rama se quede desactualizada respecto a la rama princip
 Cuando dos ramas cambian el mismo archivo, puede aparecer un conflicto:
 
 ```bash
+# Intenta fusionar una rama con la rama actual y puede generar un conflicto.
 git merge feature/rama
 ```
 
 Si ocurre, se editan los archivos marcados por Git, se resuelven y luego se marcan como listos:
 
 ```bash
+# Guarda la solución del conflicto después de editar los archivos afectados.
 git add .
 git commit -m "Resolver conflicto de merge"
 ```
@@ -307,6 +320,7 @@ git commit -m "Resolver conflicto de merge"
 Si se desea cancelar:
 
 ```bash
+# Cancela la fusión en curso si aún no se ha completado.
 git merge --abort
 ```
 
@@ -315,6 +329,7 @@ git merge --abort
 `stash` sirve para guardar cambios temporales sin hacer commit:
 
 ```bash
+# Guarda cambios temporales, los lista y luego los recupera cuando sea necesario.
 git stash
 git stash list
 git stash pop
@@ -327,12 +342,14 @@ Esto es útil cuando se necesita cambiar de rama o dejar de trabajar un momento 
 Los submodules permiten incluir repositorios dentro de otros repositorios:
 
 ```bash
+# Añade un repositorio externo como submódulo dentro del proyecto actual.
 git submodule add https://github.com/usuario/repositorio.git
 ```
 
 Para inicializar o actualizar:
 
 ```bash
+# Inicializa y actualiza los submódulos del repositorio.
 git submodule update --init --recursive
 ```
 
@@ -347,6 +364,7 @@ Este enfoque es útil cuando un proyecto depende de otro proyecto independiente.
 Un flujo básico de trabajo en Git suele seguir este patrón:
 
 ```bash
+# Revisa el estado, actualiza la rama, prepara cambios, crea un commit y los sube al remoto.
 git status
 git pull
 git add .
@@ -492,6 +510,7 @@ La práctica constante de este flujo convierte a Git en una herramienta natural 
 Se produjo porque la carpeta actual no está inicializada como repositorio.
 
 ```bash
+# Inicializa un repositorio Git en la carpeta actual.
 git init
 ```
 
@@ -500,6 +519,7 @@ git init
 Indica que no hay cambios nuevos para guardar.
 
 ```bash
+# Revisa el estado de los archivos para verificar si hay cambios por guardar.
 git status
 ```
 
@@ -508,6 +528,7 @@ git status
 Ya existe un remoto con ese nombre. Se puede cambiar o eliminar.
 
 ```bash
+# Muestra los remotos configurados y elimina uno si ya existe con ese nombre.
 git remote -v
 git remote remove origin
 ```
@@ -517,6 +538,7 @@ git remote remove origin
 Suele pasar cuando la rama remota tiene cambios que tu copia local no tiene.
 
 ```bash
+# Actualiza la rama con rebase y luego sube los cambios al remoto.
 git pull --rebase
 git push
 ```
@@ -526,6 +548,7 @@ git push
 Se resuelve editando los archivos marcados por Git, dejando la versión correcta y luego:
 
 ```bash
+# Marca como resueltos los cambios del conflicto y crea un nuevo commit.
 git add .
 git commit -m "Resolver conflicto"
 ```
@@ -541,6 +564,7 @@ git commit -m "Resolver conflicto"
 #### Generación
 
 ```bash
+# Crea una base sencilla en la rama principal y la sube al remoto.
 git checkout main
 echo "Primera línea" > archivo.txt
 git add archivo.txt
@@ -553,6 +577,7 @@ git push origin main
 No hay conflicto. Solo basta con confirmar y sincronizar:
 
 ```bash
+# Verifica el estado del repositorio y publica los cambios confirmados.
 git status
 git push origin main
 ```
@@ -562,6 +587,7 @@ git push origin main
 #### Generación
 
 ```bash
+# Genera un cambio local sobre el mismo archivo para luego compararlo con el remoto.
 git checkout main
 echo "Cambio local" > archivo.txt
 git add archivo.txt
@@ -573,12 +599,14 @@ En otra copia o desde GitHub, realiza un cambio diferente en el mismo archivo y 
 #### Resolución
 
 ```bash
+# Trae los cambios del remoto y une la versión actual con la remota.
 git pull origin main
 ```
 
 Si aparece un conflicto, edita el archivo, deja el contenido deseado y luego:
 
 ```bash
+# Guarda la solución del conflicto y la publica en el remoto.
 git add archivo.txt
 git commit -m "Resolver conflicto de sincronización"
 git push origin main
@@ -589,6 +617,7 @@ git push origin main
 #### Generación
 
 ```bash
+# Crea una rama de ejemplo y genera un conflicto al fusionarla con main.
 git checkout main
 git checkout -b feature/ejemplo
 # Edita archivo.txt en esta rama
@@ -614,6 +643,7 @@ Git mostrará el conflicto. Abre el archivo y elimina los marcadores:
 Luego:
 
 ```bash
+# Guarda la solución del conflicto generado por la fusión.
 git add archivo.txt
 git commit -m "Resolver conflicto de merge"
 ```
@@ -623,6 +653,7 @@ git commit -m "Resolver conflicto de merge"
 #### Generación
 
 ```bash
+# Simula un cambio local y un cambio remoto sobre el mismo archivo.
 git checkout main
 # Haz un cambio local en archivo.txt
 git add archivo.txt
@@ -633,12 +664,14 @@ git commit -m "Cambio local"
 #### Resolución
 
 ```bash
+# Descarga los cambios del remoto para resolver el conflicto de sincronización.
 git pull origin main
 ```
 
 Si aparece conflicto, resuélvelo manualmente y luego:
 
 ```bash
+# Guarda y publica la solución del conflicto tras el pull.
 git add archivo.txt
 git commit -m "Resolver conflicto al hacer pull"
 git push origin main
@@ -649,6 +682,7 @@ git push origin main
 #### Generación
 
 ```bash
+# Crea un conflicto en la misma línea de un archivo al fusionar dos versiones distintas.
 git checkout main
 echo "Versión uno" > archivo.txt
 git add archivo.txt
@@ -669,6 +703,7 @@ git merge feature/linea
 Edita el archivo conflictivo y deja la versión final deseada. Después:
 
 ```bash
+# Guarda la versión final elegida para resolver el conflicto en la misma línea.
 git add archivo.txt
 git commit -m "Resolver conflicto de línea"
 ```
@@ -678,6 +713,7 @@ git commit -m "Resolver conflicto de línea"
 #### Generación
 
 ```bash
+# Inicia un rebase para probar un conflicto entre dos ramas.
 git checkout feature/rebase
 git rebase main
 ```
@@ -687,6 +723,7 @@ Si ambas ramas modificaron el mismo archivo, Git mostrará un conflicto.
 #### Resolución
 
 ```bash
+# Revisa el conflicto y continúa con el rebase una vez resuelto.
 git status
 git add archivo.txt
 git rebase --continue
@@ -695,6 +732,7 @@ git rebase --continue
 Si deseas cancelar el proceso:
 
 ```bash
+# Cancela el rebase si prefieres detener el proceso.
 git rebase --abort
 ```
 
@@ -703,6 +741,7 @@ git rebase --abort
 #### Generación
 
 ```bash
+# Genera un conflicto al eliminar un archivo en una rama y modificarlo en otra.
 git checkout main
 rm archivo.txt
 git add -A
@@ -720,6 +759,7 @@ git merge feature/archivo
 Git marcará el conflicto. Decide si conservar el archivo o eliminarlo y luego:
 
 ```bash
+# Guarda la decisión final para resolver el conflicto por archivo eliminado.
 git add -A
 git commit -m "Resolver conflicto por archivo eliminado"
 ```
